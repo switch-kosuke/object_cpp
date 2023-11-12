@@ -11,8 +11,11 @@ class Student{
     public:
         Student();
         Student( int ino, const char* iname);
-        ~Student();
-        void output();
+        virtual ~Student();
+        virtual void output();
+        void whoami(){
+            cout << "studentクラスのwhoami関数です\n";
+        }
 };
 
 /**Economic クラス**/
@@ -22,7 +25,10 @@ class Economic:public Student{
     public:
         Economic(int ino=0, const char* iname="", const char* iseminar="");
         ~Economic();
-        void output();
+        void output(); //オーバーライド
+        void whoami(){
+            cout << "Economicクラスのwhoami関数です\n";
+        }
 };
 
 /**Technologyクラス**/
@@ -33,6 +39,9 @@ class Technology:public Student{
         Technology(int ino=0, const char* iname="", const char* iresearch="");
         ~Technology();
         void output();
+        void whoami(){
+            cout << "Technologyクラスのwhoami関数です\n";
+        }
 };
 
 Student::Student(){
@@ -66,7 +75,7 @@ Economic::~Economic(){
 
 void Economic::output(){
     Student::output();
-    cout << "ゼミ" << seminar << endl;
+    cout << "ゼミ:" << seminar << endl;
 }
 
 Technology::Technology(int ino, const char* iname, const char* iresearch):Student(ino, iname){
@@ -84,13 +93,30 @@ void Technology::output(){
 }
 
 int main(void){
-    //Student a; //デフォルトコンストラクタ
-    Student a(123, "うすい");
-    Economic b(211, "臼井", "数学");
-    Technology c(335, "こうすけ", "微分積分解析");
+    Student* p[3];
+    int i;
 
-    a.output(); cout<<endl;
-    b.output(); cout<<endl;
-    c.output(); cout<<endl;
+    //Student a; //デフォルトコンストラクタ
+    p[0] = new Student(123, "生徒");
+    p[1] = new Economic(211, "生徒名", "ゼミ名");
+    p[2] = new Technology(355, "研究員名" "研究名");
+
+    //a.output(); cout<<endl;
+    //b.output(); cout<<endl;
+    //c.output(); cout<<endl;
+    
+    for(i=0; i<3; i++){
+        p[i] -> output();
+        cout << endl;
+    }
+
+    for(i=0; i<3; i++){
+        p[i] -> whoami();
+        cout << endl;
+    }
+    for(i=0; i<3; i++){
+        delete p[i];
+    }
+    
     return 0;
 }
