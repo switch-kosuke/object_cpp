@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void swap();
+void swap(int& x, int& y);
 void sort(int buff[], int size);
 
 int main(void){
@@ -10,18 +10,18 @@ int main(void){
     int size;
     int i;
 
-    cout << "•À‚×‘Ö‚¦‚é”ˆÊ‚Ì”‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢„";
+    cout << "ä¸¦ã¹æ›¿ãˆã‚‹æ•°ä½ã®æ•°ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ï¼ï¼ï¼";
     cin >> size;
 
-    buff = new int[size]; //—Ìˆæ‚ÌŠm•Û
+    buff = new int[size]; //é ˜åŸŸã®ç¢ºä¿
 
     for (i=0;i<size;i++){
         buff[i] =0;
     }
 
-    //®”’l‚Ì“ü—Í
+    //æ•´æ•°å€¤ã®å…¥åŠ›
     for(i=0; i<size; i++){
-        cout << "®”’l‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢iI—¹F‚Oj==>";
+        cout << "æ•´æ•°å€¤ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ï¼ˆçµ‚äº†ï¼šï¼ï¼‰==>";
         cin >> buff[i];
         if(buff[i]==0){
             size = i;
@@ -30,17 +30,17 @@ int main(void){
     }
 
     sort(buff, size);
-    cout << "•À‚×‘Ö‚¦Œ‹‰Ê..." << endl;
+    cout << "ä¸¦ã¹æ›¿ãˆçµæœ..." << endl;
     for(i=0; i<size; i++){
         cout << buff[i] << endl;
     }
 
-    delete [] buff;  //—Ìˆæ‚ğ‰ğ•ú
+    delete [] buff;  //é ˜åŸŸã‚’è§£æ”¾
     return 0;
 
 }
 
-void swap(int x, int y){
+void swap(int& x, int& y){
     int temp;
 
     temp = x;
